@@ -1,5 +1,6 @@
+import { Transfer } from './../models/transfer.model';
 import { TransferService } from './../services/transfer.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-transfer-history',
@@ -12,7 +13,10 @@ export class TransferHistoryComponent implements OnInit {
   transfers: any[];
 
   ngOnInit(): void {
-    this.transfers = this.service.transfers;
+    this.service.all().subscribe((transfers: Transfer[]) => {
+      console.table(transfers);
+      this.transfers = transfers;
+    })
   }
 
 }
