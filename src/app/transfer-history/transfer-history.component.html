@@ -1,0 +1,21 @@
+<table>
+  <thead>
+    <th>Value</th>
+    <th>Origin Account</th>
+    <th>Destination Account</th>
+    <th>Transfer Date:</th>
+    <th>Scheduling Date:</th>
+    <!-- <th>Tipo de Transferência</th> -->
+  </thead>
+  <tbody>
+    <tr *ngFor="let transfer of transfers">
+      <th>{{transfer.value | currency }}</th>
+      <th>{{transfer.origin__account}}</th>
+      <th>{{transfer.destination__account}}</th>
+      <th>{{transfer.transfer__date | date: "longDate"}}</th>
+      <th>{{transfer.scheduling__date | date: "longDate"}}</th>
+      <!-- <th>id, fee, feetype</th> -->
+    </tr>
+  </tbody>
+</table>
+
