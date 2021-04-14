@@ -1,3 +1,4 @@
+import { TransferService } from './services/transfer.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,11 +9,11 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'bank-transfer-front';
 
-  transfers: any[] = [];
+  constructor(private service: TransferService) {
+  }
 
   scheduleTransfer($event) {
-    console.log($event);
-    const transfer = {...$event, scheduling__date: new Date()}; // deserialize transfer to get attributes
-    this.transfers.push(transfer);
+    this.service.add($event)
   }
+
 }

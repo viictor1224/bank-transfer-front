@@ -1,3 +1,4 @@
+import { TransferService } from './../services/transfer.service';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -6,12 +7,12 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./transfer-history.component.scss']
 })
 export class TransferHistoryComponent implements OnInit {
-  @Input() transfers: any[];
 
-
-  constructor() { }
+  constructor(private service: TransferService) { }
+  transfers: any[];
 
   ngOnInit(): void {
+    this.transfers = this.service.transfers;
   }
 
 }

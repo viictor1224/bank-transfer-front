@@ -1,21 +1,26 @@
-<table>
-  <thead>
-    <th>Value</th>
-    <th>Origin Account</th>
-    <th>Destination Account</th>
-    <th>Transfer Date:</th>
-    <th>Scheduling Date:</th>
+<table class="table">
+  <thead class="table__content">
+    <th class="table__thead__content">Value</th>
+    <th class="table__thead__content">Origin Account</th>
+    <th class="table__thead__content">Destination Account</th>
+    <th class="table__thead__content">Transfer Date:</th>
+    <th class="table__thead__content">Scheduling Date:</th>
     <!-- <th>Tipo de Transferência</th> -->
   </thead>
-  <tbody>
-    <tr *ngFor="let transfer of transfers">
-      <th>{{transfer.value | currency }}</th>
-      <th>{{transfer.origin__account}}</th>
-      <th>{{transfer.destination__account}}</th>
-      <th>{{transfer.transfer__date | date: "longDate"}}</th>
-      <th>{{transfer.scheduling__date | date: "longDate"}}</th>
+  <tbody *ngIf="transfers?.length > 0, else emptyList">
+    <tr class="table__line" *ngFor="let transfer of transfers">
+      <th class="table__content">{{transfer.value | currency }}</th>
+      <th class="table__content">{{transfer.origin__account}}</th>
+      <th class="table__content">{{transfer.destination__account}}</th>
+      <th class="table__content">{{transfer.transfer__date | date: "shortDate"}}</th>
+      <th class="table__content">{{transfer.scheduling__date | date: "shortDate"}}</th>
       <!-- <th>id, fee, feetype</th> -->
     </tr>
   </tbody>
 </table>
+
+<ng-template #emptyList>
+  <p>No transfers scheduled</p>
+</ng-template>
+
 
