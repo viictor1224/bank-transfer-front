@@ -12,8 +12,4 @@ export class AppComponent {
   constructor(private service: TransferService) {
   }
 
-  scheduleTransfer($event) {
-    this.service.add($event)
-  }
-
 }

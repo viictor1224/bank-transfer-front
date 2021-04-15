@@ -1,5 +1,6 @@
+import { Transfer } from './../models/transfer.model';
+import { TransferService } from './../services/transfer.service';
 import { Component, EventEmitter, Output } from '@angular/core';
-
 
 @Component({
   selector: 'app-new-transfer',
@@ -10,25 +11,35 @@ export class NewTransferComponent {
   // any -> TransferInput
   @Output() inTransfer = new EventEmitter<any>();
 
-  value: number;
-  origin__account: string;
-  destination__account: string;
-  transfer__date: string;
+  transferValue: number;
+  originAccount: string;
+  destinationAccount: string;
+  transferDate: string;
+
+  constructor(private service: TransferService) {}
 
   scheduleTransfer() {
     console.log('new transfer requested');
-    const emitValues = { value: this.value, origin__account: this.origin__account, destination__account: this.destination__account, transfer__date: this.transfer__date, };
+    const emitValues: Transfer = {
+      transferValue: this.transferValue,
+      originAccount: this.originAccount,
+      destinationAccount: this.destinationAccount,
+      transferDate: this.transferDate,
+    };
 
-    this.inTransfer.emit(emitValues);
-    this.clearForm();
-
+    this.service.add(emitValues)
+    .subscribe(result => {
+      console.log(result);
+      this.clearForm;
+    },
+    error => console.error(error)
+    );
   }
 
-
   clearForm() {
-    this.value = null;
-    this.origin__account = "";
-    this.destination__account = "";
-    this.transfer__date = "";
+    this.transferValue = null;
+    this.originAccount = '';
+    this.destinationAccount = '';
+    this.transferDate = '';
   }
 }

@@ -1,10 +1,10 @@
 export interface Transfer {
   id?: number
+  transferValue: number
   originAccount: string
   destinationAccount: string
-  transferValue: number
-  feeValue: number
-  feeType: string
+  feeValue?: number
+  feeType?: string
   transferDate: string
   schedulingDate?: string
 }
