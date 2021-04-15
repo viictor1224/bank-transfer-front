@@ -6,11 +6,12 @@ import { NewTransferComponent } from './new-transfer/new-transfer.component';
 import { TransferHistoryComponent } from './transfer-history/transfer-history.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
   declarations: [AppComponent, NewTransferComponent, TransferHistoryComponent],
-  imports: [BrowserModule, FormsModule, HttpClientModule],
+  imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [
     {
       provide: DEFAULT_CURRENCY_CODE,

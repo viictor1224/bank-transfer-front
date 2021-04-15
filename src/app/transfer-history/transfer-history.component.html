@@ -1,28 +1,41 @@
-<table class="table">
-  <thead class="table__content">
-    <th class="table__thead__content">Value</th>
-    <th class="table__thead__content">Origin Account</th>
-    <th class="table__thead__content">Destination Account</th>
-    <th class="table__thead__content">Fee Value</th>
-    <th class="table__thead__content">Fee Type</th>
-    <th class="table__thead__content">Transfer Date</th>
-    <th class="table__thead__content">Scheduling Date</th>
-  </thead>
-  <tbody *ngIf="transfers?.length > 0, else emptyList">
-    <tr class="table__line" *ngFor="let transfer of transfers">
-      <th class="table__content">{{transfer.transferValue | currency }}</th>
-      <th class="table__content">{{transfer.originAccount}}</th>
-      <th class="table__content">{{transfer.destinationAccount}}</th>
-      <th class="table__content">{{transfer.feeValue}}</th>
-      <th class="table__content">{{transfer.feeType}}</th>
-      <th class="table__content">{{transfer.transferDate | date: "shortDate"}}</th>
-      <th class="table__content">{{transfer.schedulingDate | date: "shortDate"}}</th>
-    </tr>
-  </tbody>
-</table>
+<!-- <section class="container"> -->
+  <h2 class="title">Transfers Histories</h2>
+  <table class="table">
+    <thead class="table__content">
+      <th class="table__thead__content">Value</th>
+      <th class="table__thead__content">Origin Account</th>
+      <th class="table__thead__content">Destination Account</th>
+      <th class="table__thead__content">Fee Value</th>
+      <th class="table__thead__content">Fee Type</th>
+      <th class="table__thead__content">Transfer Date</th>
+      <th class="table__thead__content">Scheduling Date</th>
+      <th class="table__thead__content">Edit</th>
+    </thead>
+    <tbody *ngIf="transfers?.length > 0; else emptyList">
+      <tr class="table__line" *ngFor="let transfer of transfers">
+        <th class="table__content">{{ transfer.transferValue | currency }}</th>
+        <th class="table__content">{{ transfer.originAccount }}</th>
+        <th class="table__content">{{ transfer.destinationAccount }}</th>
+        <th class="table__content">{{ transfer.feeValue }}</th>
+        <th class="table__content">{{ transfer.feeType }}</th>
+        <th class="table__content">
+          {{ transfer.transferDate | date: "shortDate" }}
+        </th>
+        <th class="table__content">
+          {{ transfer.schedulingDate | date: "shortDate" }}
+        </th>
+      </tr>
+    </tbody>
+  </table>
 
-<ng-template #emptyList>
-  <p>No transfers scheduled</p>
-</ng-template>
-
-
+  <ng-template #emptyList>
+    <!-- <p class="empty-list">No transfers scheduled</p> -->
+    <th class="table__content">-</th>
+    <th class="table__content">-</th>
+    <th class="table__content">-</th>
+    <th class="table__content">-</th>
+    <th class="table__content">-</th>
+    <th class="table__content">-</th>
+    <th class="table__content">-</th>
+  </ng-template>
+<!-- </section> -->

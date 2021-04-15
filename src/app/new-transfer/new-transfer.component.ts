@@ -1,14 +1,16 @@
 import { Transfer } from './../models/transfer.model';
 import { TransferService } from './../services/transfer.service';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-new-transfer',
   templateUrl: './new-transfer.component.html',
   styleUrls: ['./new-transfer.component.scss'],
 })
-export class NewTransferComponent {
-  // any -> TransferInput
+export class NewTransferComponent   {
+
   @Output() inTransfer = new EventEmitter<any>();
 
   transferValue: number;
@@ -16,7 +18,7 @@ export class NewTransferComponent {
   destinationAccount: string;
   transferDate: string;
 
-  constructor(private service: TransferService) {}
+  constructor(private service: TransferService, private router: Router) {}
 
   scheduleTransfer() {
     console.log('new transfer requested');
@@ -31,6 +33,7 @@ export class NewTransferComponent {
     .subscribe(result => {
       console.log(result);
       this.clearForm;
+      this.router.navigateByUrl('transfer-history')
     },
     error => console.error(error)
     );
