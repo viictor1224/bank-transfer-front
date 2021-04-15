@@ -33,10 +33,14 @@ export class NewTransferComponent   {
     .subscribe(result => {
       console.log(result);
       this.clearForm;
-      this.router.navigateByUrl('transfer-history')
+      this.goToTransferHistory();
     },
     error => console.error(error)
     );
+  }
+
+  goToTransferHistory(){
+    this.router.navigateByUrl('transfer-history')
   }
 
   clearForm() {

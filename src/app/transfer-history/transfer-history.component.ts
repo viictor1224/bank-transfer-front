@@ -1,6 +1,7 @@
 import { Transfer } from './../models/transfer.model';
 import { TransferService } from './../services/transfer.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-transfer-history',
@@ -9,7 +10,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransferHistoryComponent implements OnInit {
 
-  constructor(private service: TransferService) { }
+  constructor(private service: TransferService,
+    private router: Router) { }
   transfers: any[];
 
   ngOnInit(): void {
@@ -19,4 +21,7 @@ export class TransferHistoryComponent implements OnInit {
     })
   }
 
+  updateTransfer(id: number){
+    this.router.navigate(['update-transfer', id]);
+  }
 }

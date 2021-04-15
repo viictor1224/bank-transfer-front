@@ -1,0 +1,28 @@
+<section class="container">
+  <form class="form" (ngSubmit)="onSubmit()">
+    <h2 class="form__title">Update Transfer</h2>
+
+    <div class="form-field">
+      <label class="form-field__label" for="value">Value</label>
+      <input class="form-field__input" id="value" type="number" [(ngModel)]="transfer.transferValue" name="transferValue"/>
+    </div>
+
+    <div class="form-field">
+      <label class="form-field__label" for="origin__account">Origin Account</label>
+      <input class="form-field__input" id="origin__account" type="text" [(ngModel)]="transfer.originAccount" name="originAccount"/>
+    </div>
+
+    <div class="form-field">
+      <label class="form-field__label" for="destination__account">Destination Account</label>
+      <input class="form-field__input" id="destination__account" type="text" [(ngModel)]="transfer.destinationAccount" name="destinationAccount"/>
+    </div>
+
+    <div class="form-field">
+      <label class="form-field__label" for="transfer__date">Transfer Date (e.g. MM/dd/yyyy)</label>
+      <input class="form-field__input" id="transfer__date" type="text" [(ngModel)]="transfer.transferDate" name="transferDate"/>
+    </div>
+
+    <div class="button-wrapper"></div>
+    <button class="button" type="submit">Schedule</button>
+  </form>
+</section>
