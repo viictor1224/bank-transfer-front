@@ -41,7 +41,6 @@ export class TransferService {
       destinationAccount: transferFields.destinationAccount,
       transferDate: transferFields.transferDate,
     };
-    console.log('im here sending', this.transferWithoutFee)
     return this.httpClient.put(`${this.url}/${id}`, this.transferWithoutFee);
   }
   // delete
@@ -57,12 +56,4 @@ export class TransferService {
     transfer.schedulingDate = myFormattedDate;
   }
 
-  private formatDate(date: string) {
-    var datePipe = new DatePipe('en-US');
-    return datePipe.transform(date, 'MM/dd/yyyy');
-
-    // const formattedDate = new DatePipe('en-US').transform(date, 'MM/dd/yyyy');
-    // console.log(formattedDate.toString());
-    // return formattedDate.toString();
-  }
 }

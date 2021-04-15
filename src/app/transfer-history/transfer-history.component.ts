@@ -21,7 +21,22 @@ export class TransferHistoryComponent implements OnInit {
     })
   }
 
+  private getTransfers() {
+    this.service.all().subscribe(data => {
+      this.transfers = data;
+    })
+  }
+
   updateTransfer(id: number){
     this.router.navigate(['update-transfer', id]);
   }
+
+  deleteTransfer(id: number) {
+    this.service.delete(id).subscribe( data => {
+      console.log(data);
+      this.getTransfers();
+    });
+  }
+
+
 }

@@ -42,3 +42,42 @@
     border-bottom: 1px solid var(--cinza-claro);
   }
 }
+
+.button-wrapper {
+  display: flex;
+}
+
+.button {
+
+  &--update {
+  background-color: grey;
+  color: white;
+  display: block;
+  flex: 1;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  padding: 0.5em;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  margin: 0 auto;
+  }
+
+  &--delete {
+    background-color: red;
+    color: white;
+    display: block;
+    flex: 1;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    padding: 0.5em;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    margin: 0 auto;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+}

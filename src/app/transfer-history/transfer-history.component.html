@@ -27,7 +27,8 @@
           {{ transfer.schedulingDate | date: "shortDate" }}
         </th>
         <th>
-          <button (click)="updateTransfer(transfer.id)" class="btn btn-info">Update</button>
+          <button (click)="updateTransfer(transfer.id)" class="button--update">Update</button>
+          <button (click)="deleteTransfer(transfer.id)" class="button--delete">Delete</button>
         </th>
       </tr>
     </tbody>
