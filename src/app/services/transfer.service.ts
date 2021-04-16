@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Transfer } from '../models/transfer.model';
-import { Observable } from 'rxjs';
 import { DatePipe } from '@angular/common';
+import { Observable, throwError } from 'rxjs';
+import { retry, catchError } from 'rxjs/operators';
+import { stringify } from '@angular/compiler/src/util';
 
 @Injectable({
   providedIn: 'root',
@@ -21,16 +23,25 @@ export class TransferService {
   }
   // getById
   getTransferById(id: number): Observable<Transfer> {
-    return this.httpClient.get<Transfer>(`${this.url}/${id}`);
+    return this.httpClient.get<Transfer>(`${this.url}/${id}`).pipe(
+      retry(1),
+      catchError(this.errorHandler)
+    );
   }
   // getAll
   all(): Observable<Transfer[]> {
-    return this.httpClient.get<Transfer[]>(this.url);
+    return this.httpClient.get<Transfer[]>(this.url).pipe(
+      retry(1),
+      catchError(this.errorHandler)
+    );
   }
   // post
   add(transfer: Transfer): Observable<Transfer> {
     this.addSchedulingDate(transfer);
-    return this.httpClient.post<Transfer>(this.url, transfer);
+    return this.httpClient.post<Transfer>(this.url, transfer).pipe(
+      retry(1),
+      catchError(this.errorHandler)
+    );
   }
   // update
   update(id: number, transfer: Transfer): Observable<Object> {
@@ -41,11 +52,17 @@ export class TransferService {
       destinationAccount: transferFields.destinationAccount,
       transferDate: transferFields.transferDate,
     };
-    return this.httpClient.put(`${this.url}/${id}`, this.transferWithoutFee);
+    return this.httpClient.put(`${this.url}/${id}`, this.transferWithoutFee).pipe(
+      retry(1),
+      catchError(this.errorHandler)
+    );
   }
   // delete
   delete(id: number): Observable<Object> {
-    return this.httpClient.delete(`${this.url}/${id}`);
+    return this.httpClient.delete(`${this.url}/${id}`).pipe(
+      retry(1),
+      catchError(this.errorHandler)
+    );
   }
 
   private addSchedulingDate(transfer: any) {
@@ -56,4 +73,28 @@ export class TransferService {
     transfer.schedulingDate = myFormattedDate;
   }
 
+  errorHandler(error: HttpErrorResponse) {
+    try {
+      if (error.error.startsWith("Fee")) {
+      window.alert(error.error)
+      console.log(error.error);
+      return throwError(error);}
+    } catch (error) { }
+    // console.log("another error input")
+
+    var alertErrors = new String("");
+    for (let i=0; i<error.error.length; i++) {
+        alertErrors = alertErrors.concat(error.error[i].error+"\n")
+    }
+    if (alertErrors.length!=0) {
+    console.log(alertErrors);
+    window.alert(alertErrors);
+    return throwError(error);
+    }
+    if (error.status==400) {
+      console.log("bad request: please check your input fields");
+      window.alert("bad request: please check your input fields");
+      return throwError(error);
+    }
+  }
 }
