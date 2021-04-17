@@ -25,7 +25,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This project is the frontend for an application that schedules transfers and calculates their respective fees according to the transfer date and its value (you can find its backend [here](https://github.com/viictor1224/bank-transfer-scheduler)).
+This project is the frontend for an application that schedules transfers and calculates their respective fees according to the transfer date and its value (you can find its back-end [here](https://github.com/viictor1224/bank-transfer-scheduler)).
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.6.
 
@@ -56,7 +56,7 @@ Install Docker your machine to easily run this application.
   docker run -d -p 4200:4200 viictor1224/bank-transfer-front
   ```
 
-* Full Application Deploy (deploying [backend](https://github.com/viictor1224/bank-transfer-scheduler) for this application):
+* Full Application Deploy (deploying [back-end](https://github.com/viictor1224/bank-transfer-scheduler) for this application):
   ```sh
   docker-compose up
   ```
@@ -70,7 +70,7 @@ Application is already running and now you can see its interface by acessing:
 http://localhost:4200/
   ```
 
-Deploying backend application you can interact with the interface, and you can also use [Swagger](https://swagger.io/) documentation of this application by accessing the following url:
+Deploying back-end application you can interact with the interface, and you can also use [Swagger](https://swagger.io/) documentation of this application by accessing the following url:
   ```sh
 http://localhost:8080/swagger-ui.html
   ```
